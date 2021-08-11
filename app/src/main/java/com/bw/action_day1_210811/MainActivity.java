@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         }
         //依旧将状态栏设为透明
         activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+        Handler handler = new Handler();
+
     }
 
     public static void setVideoWindow(AppCompatActivity activity){
