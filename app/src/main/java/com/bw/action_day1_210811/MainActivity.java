@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import static android.view.View.SYSTEM_UI_FLAG_FULLSCREEN;
 import static android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 import static android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 import static android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
 import static android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+import static android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,10 +24,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SPUtils.getInstance().setSp("星星","星星还是那么靓");
 
-        String xing = SPUtils.getInstance().getSp().getString("星星", "123");
-        Toast.makeText(this, xing, Toast.LENGTH_SHORT).show();
+
+//        SPUtils.getInstance().setSp("星星","星星还是那么靓");
+
+//        setVideoWindow(this);
+
+//        String xing = SPUtils.getInstance().getSp().getString("星星", "123");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     /**
@@ -45,14 +55,20 @@ public class MainActivity extends AppCompatActivity {
         activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
 
-    public static void setVideoWindow(Activity activity){
+    public static void setVideoWindow(AppCompatActivity activity){
+
         View decorView = activity.getWindow().getDecorView();
-        int flag = View.SYSTEM_UI_FLAG_FULLSCREEN       //隐藏状态栏 下拉重新出现
-                |View.SYSTEM_UI_FLAG_LAYOUT_STABLE      //出现时 不占用全局位置  会自动隐藏ActionBar
-                |SYSTEM_UI_FLAG_HIDE_NAVIGATION         //隐藏Home栏
-                |SYSTEM_UI_FLAG_IMMERSIVE_STICKY;       //半透明状态栏 并且在一段时间后消失。
+//        decorView.setSystemUiVisibility(
+//                View.SYSTEM_UI_FLAG_LAYOUT_STABLE       //稳定布局
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION    //稳定布局
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN     //稳定布局
+//                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION   //隐藏导航栏
+//                        | View.SYSTEM_UI_FLAG_FULLSCREEN        //隐藏状态栏
+//                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//以半透明的状态显示，并且在一段时间后消失
+
+        decorView.setSystemUiVisibility(SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION|SYSTEM_UI_FLAG_LAYOUT_STABLE|
+                SYSTEM_UI_FLAG_HIDE_NAVIGATION|SYSTEM_UI_FLAG_FULLSCREEN|SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
 
-        decorView.setSystemUiVisibility(flag);
     }
 }
