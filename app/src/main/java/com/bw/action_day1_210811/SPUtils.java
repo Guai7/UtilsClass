@@ -25,8 +25,9 @@ class SPUtils {
     public static SPUtils getInstance() {
         if (spUtils==null){
             synchronized (SPUtils.class){
-                spUtils = new SPUtils();
-                return spUtils;
+                if (spUtils==null){
+                    spUtils = new SPUtils();
+                }
             }
         }
         return spUtils;
